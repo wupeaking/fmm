@@ -46,6 +46,15 @@ void* fmmwarp_new(char* filename, char* id,
     return fmm_warp;
 }
 
+void fmmwarp_free(void *fmm_warp){
+    FMMWarp* warp = static_cast<FMMWarp* >(fmm_warp);
+    delete warp->network;
+    delete warp->graph;
+    delete warp->fmm;
+    delete warp->fmm_cfg;
+    delete warp;
+}
+
 void fmmwarp_match_wkt(void* fmm_warp, char* wkt) {
     std::string wkt_str(wkt);
     FMMWarp* warp = static_cast<FMMWarp* >(fmm_warp);
